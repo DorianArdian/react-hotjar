@@ -1,26 +1,26 @@
-var hotjar = require('./src/react-hotjar');
+var hotjar = require("./src/react-hotjar");
 
-function hj(...params) {
-	if (!window.hj) {
-		throw new Error('Hotjar is not initialized');
-	}
-
-	window.hj(...params);
+function hj() {
+  var params = arguments;
+  if (!window.hj) {
+    throw new Error("Hotjar is not initialized");
+  }
+  window.hj.apply(undefined, params);
 }
 
 module.exports = {
-	hotjar: {
-		initialize: function initialize(id, sv) {
-			hotjar(id, sv);
-		},
-		identify: function identify(userId, properties) {
-			hj('identify', userId, properties);
-		},
-		event: function event(event) {
-			hj('event', event);
-		},
-		stateChange: function stateChange(relativePath) {
-			hj('stateChange', relativePath);
-		}
-	}
+  hotjar: {
+    initialize: function initialize(id, sv) {
+      hotjar(id, sv);
+    },
+    identify: function identify(userId, properties) {
+      hj("identify", userId, properties);
+    },
+    event: function event(event) {
+      hj("event", event);
+    },
+    stateChange: function stateChange(relativePath) {
+      hj("stateChange", relativePath);
+    },
+  },
 };
