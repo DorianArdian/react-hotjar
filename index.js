@@ -1,10 +1,11 @@
 var hotjar = require("./src/react-hotjar");
 
 function hj() {
-  var params = arguments;
+  var params = Array.prototype.slice.call(arguments)
   if (!window.hj) {
     throw new Error("Hotjar is not initialized");
   }
+
   window.hj.apply(undefined, params);
 }
 
